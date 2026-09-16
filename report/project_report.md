@@ -1,359 +1,360 @@
 # Project Report
 
-> **Note:** Sections marked **[ADJUST TO COURSE FORMAT]** should be
-> checked against your specific course/assignment page — cover page
-> requirements, exact section ordering, word/page limits, and
-> citation style can vary by institution. The content below is
-> written to be adapted quickly into whatever template your course
-> requires.
+## Face and Eye Detection Using OpenCV Haar Cascade Classifiers
+
+### Submitted By
+
+**Name:** DEVANSHI SHARMA
+**Registration No.:** 24BAI10556
+**Course Code:** CSE3010
+**Instructor:** Dr. Siddharth Singh Chouhan
+**Submission Date:** 18 September 2026
 
 ---
 
-## 1. Title
+## 1. Abstract
 
-**Face and Eye Detection Using OpenCV Haar Cascade Classifiers**
+This project is based on face and eye detection using Python and OpenCV. The main aim of the project is to detect human faces and eyes from an image and also provide real-time detection using a webcam.
 
-**[ADJUST TO COURSE FORMAT]** — Add your name, roll/registration
-number, course code, instructor name, and submission date here as
-required by your institution's cover page.
+For face and eye detection, the project uses OpenCV's Haar Cascade classifiers. The input image is first converted into grayscale and processed before applying the detection algorithm. Once a face is detected, the system searches for eyes inside the detected face region. Bounding boxes are then drawn around the detected faces and eyes.
 
----
-
-## 2. Abstract
-
-This project implements a face and eye detection system using the
-OpenCV computer vision library in Python. The system reads an input
-image (or live webcam feed), applies a preprocessing pipeline
-(resizing, grayscale conversion, denoising, and histogram
-equalization), and detects faces using a pretrained Haar Cascade
-classifier. For each detected face, the system further searches
-within that region to detect eyes, demonstrating region-restricted
-feature extraction. Detected faces and eyes are annotated with
-labeled bounding boxes and the resulting image is saved to disk. The
-project is implemented as a modular, command-line Python application
-that can process a single image, a folder of images, or a live
-webcam stream, and is designed to run without a GPU or any additional
-downloaded models, making it reproducible on any standard laptop.
+The project was tested successfully on a sample image and also using a webcam. In the sample image used for testing, the system detected **2 faces and 2 eyes**. The project demonstrates how basic computer vision techniques can be implemented using OpenCV without requiring a GPU or a large machine-learning model.
 
 ---
 
-## 3. Introduction
+## 2. Introduction
 
-Computer vision enables machines to interpret and process visual
-information from the world, and one of its most common applications
-is detecting and localizing human faces within images. Face detection
-underpins a wide range of real-world systems, including photo
-organization software, video conferencing tools (auto-framing/
-background blur), security and surveillance systems, and as a
-preprocessing step for higher-level tasks such as face recognition or
-emotion analysis. This project explores a classical, well-established
-approach to this problem — the Haar Cascade classifier — implemented
-using the OpenCV library, one of the most widely used open-source
-computer vision toolkits.
+Computer vision is a field of computer science that allows computers to understand and process images and videos. Face detection is one of the common applications of computer vision and is used in many systems such as photo applications, video calls, security systems and attendance systems.
+
+In this project, I implemented a simple face and eye detection system using OpenCV. OpenCV provides several useful tools for image processing and object detection. I used Haar Cascade classifiers because they are simple to implement and can work efficiently on a normal computer.
+
+The project helped me understand basic concepts such as image reading, grayscale conversion, image preprocessing, object detection and drawing bounding boxes on detected objects.
 
 ---
 
-## 4. Problem Statement
+## 3. Problem Statement
 
-Given an arbitrary input image that may or may not contain one or
-more human faces, automatically and reliably locate the position and
-size of each face, and further locate the eyes within each face,
-without any manual annotation or per-image tuning, and produce a
-visual output that clearly marks each detection.
+The objective of this project is to develop a system that can automatically detect human faces and eyes in an input image and mark the detected regions using bounding boxes.
+
+The system should also be able to detect faces and eyes in real time using a webcam.
 
 ---
 
-## 5. Objectives
+## 4. Objectives
 
-1. Read and display images programmatically using OpenCV.
-2. Apply an effective image preprocessing pipeline to improve
-   detection robustness.
-3. Detect human faces in an image using a Haar Cascade classifier.
-4. Perform feature-level detection (eyes) restricted to each detected
-   face's region of interest.
-5. Visually annotate detections with bounding boxes and labels.
-6. Save processed output images in an organized, reproducible folder
-   structure.
-7. Support both static-image and real-time webcam workflows.
-8. Handle invalid, missing, or corrupted input gracefully.
+The main objectives of this project are:
+
+1. To read and process images using OpenCV.
+2. To understand basic image preprocessing techniques.
+3. To detect human faces using Haar Cascade classifiers.
+4. To detect eyes within the detected face regions.
+5. To draw bounding boxes around detected faces and eyes.
+6. To save the processed image as an output.
+7. To implement real-time face and eye detection using a webcam.
+8. To understand the basic working of classical computer vision algorithms.
 
 ---
 
-## 6. Literature / Background
+## 5. Background
 
-Face detection has been an active research area in computer vision
-for decades. One of the most influential classical approaches is the
-**Viola–Jones object detection framework** (2001), which introduced
-Haar-like features combined with an AdaBoost-trained cascade of
-classifiers to achieve fast, real-time object detection. This
-approach became the basis for OpenCV's `CascadeClassifier`, which is
-still widely used today for lightweight, CPU-only detection tasks
-because it requires no GPU, no external model downloads, and runs
-extremely quickly compared to modern deep-learning detectors.
+Face detection has been an important problem in computer vision for many years. One of the well-known classical approaches is the **Viola-Jones object detection framework**, which uses Haar-like features and a cascade of classifiers.
 
-More recent approaches (e.g., MTCNN, RetinaFace, and other CNN-based
-detectors) achieve higher accuracy, especially on difficult poses,
-lighting, and occlusion, but require significantly more computational
-resources and, in many cases, internet access to download pretrained
-model weights. For a college-level, CPU-only, offline-friendly
-project, the Haar Cascade approach was chosen as the most practical
-and pedagogically appropriate method: it directly demonstrates
-classical computer vision concepts (sliding-window search, cascade
-classification, region-of-interest restriction) without introducing
-the added complexity of deep learning frameworks.
+OpenCV provides Haar Cascade XML files that can be used directly for detecting objects such as faces and eyes. These classifiers are lightweight and can run on a CPU, making them suitable for simple computer vision projects.
 
-**[ADJUST TO COURSE FORMAT]** — If your course requires citations in
-a specific style (APA/IEEE/etc.) or a literature review of multiple
-academic papers, expand this section accordingly using the references
-in Section 21.
+Modern applications also use deep-learning-based methods for face detection. However, Haar Cascades are easier to understand and implement, which makes them useful for learning the basic concepts of object detection.
+
+---
+
+## 6. Technologies Used
+
+| Technology   | Purpose                                 |
+| ------------ | --------------------------------------- |
+| Python       | Main programming language               |
+| OpenCV       | Image processing and face/eye detection |
+| NumPy        | Numerical and image-related operations  |
+| Haar Cascade | Face and eye detection                  |
+| Git          | Version control                         |
+| GitHub       | Project repository and code management  |
+| VS Code      | Development environment                 |
 
 ---
 
 ## 7. Methodology
 
-The project follows a straightforward image-processing pipeline,
-implemented as a modular Python application:
+The project follows the following steps:
 
-1. **Input acquisition** — an image is loaded from disk (or a frame
-   is captured from a webcam).
-2. **Preprocessing** — the image is resized for consistent
-   performance, converted from BGR color to grayscale (Haar Cascades
-   operate on grayscale intensity patterns), lightly denoised with a
-   Gaussian blur, and contrast-normalized with histogram
-   equalization.
-3. **Face detection** — the preprocessed grayscale image is passed to
-   `cv2.CascadeClassifier.detectMultiScale()` using the bundled
-   `haarcascade_frontalface_default.xml` model, which returns
-   bounding boxes for each detected face.
-4. **Eye detection (feature extraction)** — for each detected face
-   box, the corresponding region of the grayscale image is cropped
-   out and passed to a second cascade classifier
-   (`haarcascade_eye.xml`) to detect eyes strictly within that
-   region.
-5. **Annotation** — bounding boxes and text labels are drawn on the
-   original color image using `cv2.rectangle` and `cv2.putText`.
-6. **Output** — the final annotated image is saved to the `output/`
-   folder with a timestamped filename, and detection counts are
-   printed to the console.
+### Step 1: Input Image
 
----
+The system takes an image from the `input` folder. The project can also take frames from a webcam for real-time detection.
 
-## 8. Technologies and Tools Used
+### Step 2: Image Preprocessing
 
-| Category | Tool/Technology |
-|---|---|
-| Programming language | Python 3.9+ |
-| Core CV library | OpenCV (`opencv-python`) |
-| Numerical operations | NumPy |
-| CLI interface | Python `argparse` (standard library) |
-| Detection models | Haar Cascade XML classifiers bundled with OpenCV |
-| Version control | Git / GitHub |
+The image is processed before detection. It is resized and converted from a colored image into grayscale. Grayscale images make the detection process simpler because the classifier mainly works with intensity information.
+
+### Step 3: Face Detection
+
+The preprocessed image is passed to the Haar Cascade face classifier. The classifier searches the image for patterns that match a human face.
+
+### Step 4: Eye Detection
+
+After detecting a face, the detected face area is treated as a region of interest. The eye classifier is then applied only to this region to find the eyes.
+
+### Step 5: Annotation
+
+Bounding boxes are drawn around the detected faces and eyes. Labels can also be added to make the result easier to understand.
+
+### Step 6: Output
+
+The final processed image is saved in the `output` folder. The number of detected faces and eyes is also displayed in the terminal.
 
 ---
 
-## 9. System / Project Architecture
+## 8. System Architecture
+
+The overall working of the project can be represented as:
 
 ```text
-                ┌─────────────────┐
-                │   Input Image /  │
-                │  Webcam Frame    │
-                └────────┬─────────┘
-                         │
-                         ▼
-               ┌───────────────────┐
-               │  Preprocessing     │
-               │ (resize, gray,     │
-               │  denoise, equalize)│
-               └─────────┬──────────┘
-                         │
-                         ▼
-               ┌───────────────────┐
-               │   Face Detection   │
-               │ (Haar Cascade)     │
-               └─────────┬──────────┘
-                         │  for each face
-                         ▼
-               ┌───────────────────┐
-               │   Eye Detection    │
-               │ (within face ROI)  │
-               └─────────┬──────────┘
-                         │
-                         ▼
-               ┌───────────────────┐
-               │    Annotation      │
-               │ (boxes + labels)   │
-               └─────────┬──────────┘
-                         │
-                         ▼
-               ┌───────────────────┐
-               │   Save Output /    │
-               │   Display Result   │
-               └───────────────────┘
+        Input Image / Webcam
+                 |
+                 v
+        Image Preprocessing
+                 |
+                 v
+          Face Detection
+          (Haar Cascade)
+                 |
+                 v
+       Detected Face Region
+                 |
+                 v
+           Eye Detection
+          (Haar Cascade)
+                 |
+                 v
+       Draw Bounding Boxes
+                 |
+                 v
+          Display / Save
+             Output
 ```
 
-The codebase is organized into three logical modules under `src/`:
-`preprocessing.py` (image I/O and preprocessing), `detector.py`
-(the `FaceEyeDetector` class wrapping the Haar Cascade logic), and
-`utils.py` (file/folder helper functions). `main.py` ties these
-together behind a command-line interface supporting both batch-image
-and live-webcam modes.
+---
+
+## 9. Project Structure
+
+The project is organized into different folders and files:
+
+```text
+opencv-image-detection/
+│
+├── README.md
+├── requirements.txt
+├── main.py
+│
+├── src/
+│   ├── __init__.py
+│   ├── preprocessing.py
+│   ├── detector.py
+│   └── utils.py
+│
+├── input/
+│   └── img1.jpg
+│
+├── output/
+│   └── detected output image
+│
+├── screenshots/
+│   ├── image_detection_terminal.png
+│   ├── detected_output.png
+│   └── webcam_detection.png
+│
+└── report/
+    └── project_report.md
+```
 
 ---
 
 ## 10. Implementation
 
-The implementation is split across four Python files:
+The project is divided into different Python files to keep the code organized.
 
-- **`main.py`** — the CLI entry point; parses arguments, loads the
-  detector, and dispatches to either image-processing or webcam mode.
-- **`src/preprocessing.py`** — `load_image()`, `resize_image()`,
-  `convert_to_grayscale()`, `denoise_image()`,
-  `equalize_histogram()`, and the combined
-  `preprocess_for_detection()` pipeline function.
-- **`src/detector.py`** — the `FaceEyeDetector` class, which loads
-  the two Haar Cascade XML models on initialization and exposes
-  `detect_faces()`, `detect_eyes_in_face()`, and
-  `detect_and_annotate()`.
-- **`src/utils.py`** — folder/file helpers: `list_images()`,
-  `build_output_path()`, `save_image()`, and `ensure_dir()`.
+### `main.py`
 
-See the repository's root `README.md` for the exact commands to run
-each mode, and the source files themselves (fully commented) for
-line-by-line implementation detail.
+This is the main file of the project. It takes the required arguments and starts either image detection or webcam detection.
 
----
+### `preprocessing.py`
 
-## 11. Algorithm / Working
+This file contains functions related to image preprocessing, such as loading, resizing and converting the image to grayscale.
 
-**Haar Cascade detection (`detectMultiScale`) works as follows:**
+### `detector.py`
 
-1. The classifier encodes learned Haar-like rectangular features
-   (patterns of light/dark regions) that are characteristic of faces
-   (e.g., the eye region is typically darker than the cheek region
-   below it).
-2. A search window slides across the image at multiple positions and
-   scales (`scaleFactor` controls how much the window shrinks between
-   scales).
-3. At each position, a cascade of increasingly complex classifiers
-   quickly rejects non-face regions early, so only promising regions
-   proceed through the full cascade — this is what makes the
-   algorithm fast enough for real time use.
-4. `minNeighbors` controls how many overlapping positive detections
-   are required to retain a region as a genuine detection (higher
-   values reduce false positives at some cost to recall).
-5. The same algorithm is re-applied with a different trained cascade
-   (`haarcascade_eye.xml`) restricted to each face's cropped region
-   to detect eyes.
+This file contains the main face and eye detection logic. It uses the Haar Cascade classifiers provided by OpenCV.
+
+### `utils.py`
+
+This file contains helper functions related to folders, file paths and saving output images.
 
 ---
 
-## 12. Dataset / Input Images
+## 11. Algorithm Used
 
-No external dataset or downloaded model weights are required. The two
-Haar Cascade classifier files
-(`haarcascade_frontalface_default.xml` and `haarcascade_eye.xml`) are
-distributed as part of the `opencv-python` package itself
-(`cv2.data.haarcascades`).
+The project uses the **Haar Cascade algorithm** for face and eye detection.
 
-Input images are supplied by the user by placing personal or
-course-approved sample photographs into the `input/` folder (see
-`input/README.md`). For this report, `[ADD NUMBER]` sample images
-were used, sourced from `[ADD SOURCE — e.g., "personal photographs
-taken with permission" or a specific royalty-free image site]`.
+The basic working is:
 
-**[ADJUST TO COURSE FORMAT]** — Fill in the exact number and source
-of images you actually tested with, and confirm your course's policy
-on using personal photographs versus royalty-free/public datasets.
+1. The input image is given to the classifier.
+2. The classifier searches different areas of the image.
+3. Haar-like features are used to identify patterns related to a face.
+4. The cascade classifier removes areas that do not match the required pattern.
+5. The remaining areas are considered possible face detections.
+6. The eye classifier is then applied to the detected face regions.
+7. Bounding boxes are drawn around the detected objects.
+
+The `detectMultiScale()` function in OpenCV is used for detecting multiple objects at different sizes in an image.
+
+---
+
+## 12. Input Image
+
+For testing the project, I used a sample image named:
+
+```text
+img1.jpg
+```
+
+The image was placed inside the `input` folder.
+
+The project was also tested using a webcam to check whether the system could perform face and eye detection in real time.
 
 ---
 
 ## 13. Results
 
-The system was tested on `[ADD NUMBER]` images containing a total of
-`[ADD NUMBER]` faces. Faces were correctly detected in `[ADD NUMBER /
-PERCENTAGE]` of cases, and eyes were correctly detected within
-`[ADD NUMBER / PERCENTAGE]` of the correctly detected faces. Detection
-was most reliable on clear, front-facing, well-lit photographs, and
-less reliable on angled faces, low-light images, or faces partially
-occluded by hair, glasses, or hands.
+The project was successfully executed using Python and OpenCV.
 
-**[ADJUST TO COURSE FORMAT]** — Run the project on your own chosen
-images and fill in the actual counts/percentages observed, ideally
-summarized in a small results table.
+For the sample image `img1.jpg`, the terminal displayed:
 
-| Image | Faces Detected | Eyes Detected | Notes |
-|---|---|---|---|
-| `sample1.jpg` | `[ADD]` | `[ADD]` | `[ADD]` |
-| `sample2.jpg` | `[ADD]` | `[ADD]` | `[ADD]` |
+```text
+[INFO] Processing: input/img1.jpg
+[RESULT] Faces detected: 2 | Eyes detected: 2
+[INFO] Output saved to: output\img1_detected_20260916_222435.jpg
+
+[DONE] Processing complete.
+```
+
+### Result Table
+
+| Input Image | Faces Detected | Eyes Detected |
+| ----------- | -------------: | ------------: |
+| `img1.jpg`  |              2 |             2 |
+
+The processed image was successfully saved in the `output` folder.
+
+The webcam mode was also tested successfully and was able to detect faces and eyes in real time.
 
 ---
 
-## 14. Screenshots / Output
+## 14. Screenshots
 
-**[ADJUST TO COURSE FORMAT]** — Insert before/after image pairs here
-(place the image files in the `screenshots/` folder and reference
-them with Markdown image syntax, e.g. `![Detection result](../screenshots/result1.png)`).
+The project screenshots are available in the `screenshots` folder.
+
+### 14.1 Image Detection Terminal
+
+This screenshot shows the project being executed on the input image and the detection results displayed in the terminal.
+
+![Image Detection Terminal](../screenshots/image_detection_terminal.png)
+
+### 14.2 Detected Output
+
+This screenshot shows the output image after face and eye detection.
+
+![Detected Output](../screenshots/detected_output.png)
+
+### 14.3 Webcam Detection
+
+This screenshot shows the real-time face and eye detection using the webcam.
+
+![Webcam Detection](../screenshots/webcam_detection.png)
 
 ---
 
 ## 15. Advantages
 
-- No external dataset, training process, or internet-downloaded model
-  weights are required — everything needed ships with OpenCV.
-- Runs entirely on CPU, suitable for any standard laptop.
-- Fast enough for real-time webcam use.
-- Transparent, explainable algorithm — well suited to demonstrating
-  core computer vision concepts in a course setting.
-- Modular, well-commented codebase that is easy to extend.
+The main advantages of this project are:
+
+* Simple and easy to understand.
+* Does not require a GPU.
+* Can run on a normal laptop.
+* Face and eye detection can be performed quickly.
+* Can work with both images and webcam input.
+* Uses OpenCV's built-in Haar Cascade classifiers.
+* Helps understand basic computer vision concepts.
+
+---
 
 ## 16. Limitations
 
-- Accuracy degrades on extreme head angles, poor lighting, small
-  faces, or heavy occlusion.
-- Classical Haar Cascades are outperformed in accuracy by modern
-  deep-learning face detectors on difficult images.
-- Eye detection can occasionally miss closed or partially obscured
-  eyes.
-- Requires a working webcam device for the real-time mode.
+Although the project works successfully, it has some limitations:
+
+* Detection may not work accurately for faces that are not clearly visible.
+* Poor lighting can affect detection.
+* Side-facing or highly tilted faces may not always be detected.
+* Eyes may not be detected if they are closed or covered.
+* Haar Cascade detection is less accurate than some modern deep-learning-based methods.
+* Webcam mode requires a working camera.
+
+---
 
 ## 17. Applications
 
-- Preprocessing step for face recognition or attendance systems.
-- Auto-framing/cropping in photo and video applications.
-- Basic security/surveillance motion-and-presence alerting.
-- Educational demonstration of classical object detection concepts.
+Face and eye detection can be used in applications such as:
+
+* Face detection in photographs.
+* Basic attendance systems.
+* Webcam-based applications.
+* Photo and video processing.
+* Security-related systems.
+* Face recognition preprocessing.
+* Computer vision learning and demonstrations.
+
+---
 
 ## 18. Future Scope
 
-- Replace or augment Haar Cascades with a deep-learning-based
-  detector for improved accuracy.
-- Add configurable detection sensitivity via command-line arguments.
-- Extend to detect additional features (smile detection, basic
-  emotion classification).
-- Build a simple graphical user interface for non-technical users.
-- Add automated testing with a fixed set of benchmark images.
+The project can be improved further by:
+
+1. Using a modern deep-learning-based face detector.
+2. Adding smile detection.
+3. Adding emotion detection.
+4. Developing a graphical user interface.
+5. Adding support for video files.
+6. Improving detection for different face angles and lighting conditions.
+7. Adding more test images for performance evaluation.
+8. Adding automated testing for different input cases.
+
+---
 
 ## 19. Conclusion
 
-This project successfully demonstrates a complete, reproducible face
-and eye detection pipeline built with OpenCV in Python. It covers the
-full journey from raw image input through preprocessing, detection,
-feature-region extraction, annotation, and output — using only
-classical computer vision techniques that require no external
-datasets or GPU resources. While Haar Cascades have well-understood
-accuracy limitations compared to modern deep-learning detectors, they
-remain an effective, fast, and pedagogically valuable approach for a
-college-level computer vision project, and the modular code structure
-leaves clear paths for future improvement.
+This project helped me understand the basic working of computer vision and object detection using OpenCV. I implemented a face and eye detection system using Haar Cascade classifiers and tested it with both an image and a webcam.
+
+The system successfully detected **2 faces and 2 eyes** in the sample image used for testing. I also successfully tested the real-time webcam mode.
+
+Through this project, I learned about image preprocessing, grayscale conversion, Haar Cascade classifiers, region of interest, object detection and image annotation. Overall, the project provided practical experience in implementing a basic computer vision application using Python and OpenCV.
+
+---
 
 ## 20. References
 
-1. OpenCV Documentation — https://docs.opencv.org/
-2. OpenCV Cascade Classifier Tutorial —
-   https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
-3. Viola, P., & Jones, M. (2001). *Rapid Object Detection using a
-   Boosted Cascade of Simple Features.* IEEE CVPR.
-4. NumPy Documentation — https://numpy.org/doc/
+1. OpenCV Documentation — [https://docs.opencv.org/](https://docs.opencv.org/)
+2. OpenCV Cascade Classifier Documentation — [https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html](https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html)
+3. Viola, P. and Jones, M. (2001), *Rapid Object Detection using a Boosted Cascade of Simple Features*, IEEE CVPR.
+4. NumPy Documentation — [https://numpy.org/doc/](https://numpy.org/doc/)
 
-**[ADJUST TO COURSE FORMAT]** — Convert the reference list above into
-your course's required citation style (APA/IEEE/MLA/etc.) if needed.
+---
+
+## 21. GitHub Repository
+
+The complete source code, README, input image, output files and screenshots are available on GitHub:
+
+**[https://github.com/devanshi2208/opencv-image-detection](https://github.com/devanshi2208/opencv-image-detection)**
