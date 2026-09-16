@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Project output (keep the folder via .gitkeep, ignore generated results)
+output/*.jpg
+output/*.png
+!output/.gitkeep
