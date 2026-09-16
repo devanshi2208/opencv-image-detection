@@ -1,24 +1,4 @@
-"""
-main.py
--------
-Entry point for the OpenCV Face & Eye Detection project.
 
-Usage examples (run from the project root folder):
-
-    Process every image inside the input/ folder:
-        python main.py --mode image
-
-    Process a single specific image:
-        python main.py --mode image --input input/sample1.jpg
-
-    Process a single image AND display the result in a window:
-        python main.py --mode image --input input/sample1.jpg --show
-
-    Run live detection using your webcam (press 'q' to quit):
-        python main.py --mode webcam
-
-Run `python main.py --help` to see all available options.
-"""
 
 import argparse
 import sys
@@ -35,12 +15,12 @@ DEFAULT_OUTPUT_DIR = "output"
 
 
 def process_single_image(detector, image_path, output_dir, show_window):
-    """Run the full detection pipeline on one image file and save the result."""
+    
     print(f"\n[INFO] Processing: {image_path}")
     image = load_image(image_path)
 
     if image is None:
-        # Skip gracefully instead of crashing the whole batch run
+        
         print(f"[WARN] Skipping invalid/missing image: {image_path}")
         return
 
@@ -64,11 +44,11 @@ def run_image_mode(args, detector):
     ensure_dir(args.output)
 
     if args.input:
-        # A single specific image was supplied
+        
         process_single_image(detector, args.input, args.output, args.show)
         return
 
-    # No specific file given -> process every image inside input/
+    
     image_paths = list_images(args.input_dir)
 
     if not image_paths:
@@ -83,10 +63,7 @@ def run_image_mode(args, detector):
 
 
 def run_webcam_mode(args, detector):
-    """
-    Run real-time face & eye detection using the default webcam.
-    Press 'q' in the display window to quit.
-    """
+    
     cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
